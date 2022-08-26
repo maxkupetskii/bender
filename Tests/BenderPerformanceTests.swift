@@ -60,7 +60,7 @@ class BenderPerfTests: XCTestCase {
         
         let arrayRule = ArrayRule(itemRule: itemRule)
         
-        let path = Bundle(for: BenderPerfTests.self).path(forResource: "five_megs", ofType: "json")!
+        let path = Bundle.module.path(forResource: "five_megs", ofType: "json")!
         let data = try! Data(contentsOf: URL(fileURLWithPath: path))
         let json = try! JSONSerialization.jsonObject(with: data, options: []) as AnyObject
         

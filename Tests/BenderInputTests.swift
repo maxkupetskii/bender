@@ -457,7 +457,7 @@ class BenderInTests: QuickSpec {
                 expect{ try personRule.validate(jsonObject) }.to(throwError { (error: RuleError) in
                         let stack = error.unwindStack()
                         expect(stack.count).to(equal(2))
-                        expect("\(stack[1])").to(contain("Badly formed object around character 15."))                    
+                        expect("\(stack[1])").to(contain("Badly formed object around line 1, column 15."))
                     })
 
             }
@@ -528,12 +528,12 @@ class BenderInTests: QuickSpec {
 }
 
 func jsonFromFile(_ name: String) -> AnyObject {
-    let data = try! Data(contentsOf: URL(fileURLWithPath: Bundle(for: BenderInTests.self).path(forResource: name, ofType: "json")!))
+    let data = try! Data(contentsOf: URL(fileURLWithPath: Bundle.module.path(forResource: name, ofType: "json")!))
     return try! JSONSerialization.jsonObject(with: data, options: .allowFragments) as AnyObject
 }
 
 func dataFromFile(_ name: String) -> Data? {
-    return (try? Data(contentsOf: URL(fileURLWithPath: Bundle(for: BenderInTests.self).path(forResource: name, ofType: "json")!)))
+    return (try? Data(contentsOf: URL(fileURLWithPath: Bundle.module.path(forResource: name, ofType: "json")!)))
 }
 
 class HotelData {
